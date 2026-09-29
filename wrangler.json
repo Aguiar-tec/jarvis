@@ -1,0 +1,19 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "jarvis-routine-assistant",
+  "main": "vinext/server/fetch-handler",
+  "compatibility_date": "2026-05-15",
+  "compatibility_flags": ["nodejs_compat"],
+  "d1_databases": [{
+    "binding": "DB",
+    "database_name": "jarvis-db",
+    "database_id": "00000000-0000-4000-8000-000000000000",
+    "migrations_dir": "drizzle"
+  }],
+  "vars": {
+    "APP_ORIGIN": "http://127.0.0.1:3000",
+    "GITHUB_CLIENT_ID": "",
+    "ALLOWED_GITHUB_IDS": ""
+  },
+  "observability": {"enabled": true}
+}

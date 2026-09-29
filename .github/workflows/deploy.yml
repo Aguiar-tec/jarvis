@@ -1,0 +1,33 @@
+name: Publicar JARVIS
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: jarvis-production
+  cancel-in-progress: false
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: production
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Validar, migrar e publicar
+        run: pnpm run deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_D1_DATABASE_ID: ${{ vars.CLOUDFLARE_D1_DATABASE_ID }}
+          JARVIS_APP_ORIGIN: ${{ vars.JARVIS_APP_ORIGIN }}
+          JARVIS_GITHUB_CLIENT_ID: ${{ vars.JARVIS_GITHUB_CLIENT_ID }}
+          JARVIS_GITHUB_CLIENT_SECRET: ${{ secrets.JARVIS_GITHUB_CLIENT_SECRET }}
+          JARVIS_ALLOWED_GITHUB_IDS: ${{ vars.JARVIS_ALLOWED_GITHUB_IDS }}
+          JARVIS_WORKER_NAME: ${{ vars.JARVIS_WORKER_NAME }}

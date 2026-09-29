@@ -2,6 +2,8 @@
 
 O GitHub guarda o código e executa a automação; Cloudflare Workers executa o site/API e D1 guarda os registros e sessões. Esta preparação mantém o runtime e o banco utilizados pelo projeto, agora na sua conta. GitHub Pages, sozinho, não executa esse backend.
 
+**Situação em 29/09/2026:** o código já foi enviado para [Aguiar-tec/jarvis](https://github.com/Aguiar-tec/jarvis), na branch `main`, e a validação automática passou. Para esta instalação, comece pela preparação da Cloudflare (item 2 abaixo). As instruções de envio do código ficam disponíveis para futuras cópias do projeto.
+
 ## Caminho pelo navegador, sem instalações locais
 
 É possível realizar a publicação pelos painéis web. As instalações e os comandos Node/pnpm ficam no GitHub Actions.

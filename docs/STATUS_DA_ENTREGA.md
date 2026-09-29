@@ -1,4 +1,13 @@
-# Validação da preparação — 18/09/2026
+# Situação da entrega — 29/09/2026
+
+## Código no GitHub
+
+- Repositório: [Aguiar-tec/jarvis](https://github.com/Aguiar-tec/jarvis), branch `main`.
+- Os 122 arquivos da versão preparada foram enviados. A árvore Git `8d89f145610bf9bf259f9b4040230dcbc37da876` coincidiu exatamente com a versão validada localmente.
+- Commit da aplicação: `dab6d7c798d9436fc1cd10555bf200c8d4ac023c`.
+- [GitHub Actions — Validar JARVIS #1](https://github.com/Aguiar-tec/jarvis/actions/runs/36612232760): concluído com sucesso. Instalação com lockfile, TypeScript, testes, build e integração aprovados.
+- O repositório foi criado pelo proprietário com visibilidade pública. O envio contém código e exemplos de configuração, sem credenciais nem exportações pessoais.
+- A atualização posterior a esse commit altera apenas a documentação para registrar a entrega.
 
 ## Concluído no código
 
@@ -23,9 +32,10 @@ O login real no GitHub, o callback da URL pública, a aplicação de migrações
 
 ## Ações externas pendentes
 
-1. Disponibilizar um repositório de destino no GitHub e enviar o código.
-2. Criar o banco D1 e o OAuth App nas contas escolhidas; configurar as variáveis e os segredos.
-3. Executar o workflow de publicação e validar o login na URL definitiva.
-4. Exportar os registros da instalação atual e importá-los na nova conta autenticada.
+1. Criar o banco D1 e o OAuth App nas contas escolhidas; configurar as variáveis e os segredos do ambiente `production`.
+2. Executar o workflow **Publicar JARVIS** e validar o login na URL definitiva.
+3. Exportar os registros da instalação atual e importá-los na nova conta autenticada.
+
+O envio ao GitHub e a validação automática não publicam o site. Nenhum deploy na conta Cloudflare de destino foi executado nesta etapa.
 
 A instalação anterior não foi republicada nem teve seus dados alterados durante esta preparação.

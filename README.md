@@ -2,7 +2,9 @@
 
 Assistente de rotina do PCC de Daniel Aguiar. Este código preserva o painel e as funcionalidades implementadas e pode ser mantido em um repositório GitHub, com aplicação e banco na sua conta Cloudflare.
 
-**Comece por [docs/HOSPEDAGEM.md](docs/HOSPEDAGEM.md).** Há um caminho pelo navegador e GitHub Actions, sem instalar Node.js no seu computador. Para transferir seus registros atuais, siga [docs/MIGRACAO.md](docs/MIGRACAO.md).
+**Código disponível em [Aguiar-tec/jarvis](https://github.com/Aguiar-tec/jarvis), na branch `main`.** A [validação no GitHub Actions](https://github.com/Aguiar-tec/jarvis/actions/runs/36612232760) passou em 29/09/2026. A nova instalação ainda aguarda configuração e publicação na Cloudflare.
+
+**Continue em [docs/HOSPEDAGEM.md](docs/HOSPEDAGEM.md), a partir da preparação da Cloudflare.** Há um caminho pelo navegador e GitHub Actions, sem instalar Node.js no seu computador. Para transferir seus registros atuais, siga [docs/MIGRACAO.md](docs/MIGRACAO.md).
 
 ## As três partes desta entrega
 
@@ -10,7 +12,7 @@ Assistente de rotina do PCC de Daniel Aguiar. Este código preserva o painel e a
 2. **Continuidade dos dados:** tarefas, recorrências, metas, áreas, competências, relatórios, conquistas, temas, voz e catálogo preservados; importação das exportações anteriores com validação e confirmação.
 3. **Código e publicação:** configuração de desenvolvimento/produção, GitHub Actions, testes automatizados e guia de instalação/migração.
 
-A aplicação depende de serviços externos para executar: Cloudflare Workers/D1 e um aplicativo OAuth do GitHub da sua conta. As credenciais e o repositório de destino precisam ser configurados antes da publicação. O código não cria contas nem transfere automaticamente os dados da instalação anterior.
+A aplicação depende de serviços externos para executar: Cloudflare Workers/D1 e um aplicativo OAuth do GitHub da sua conta. O repositório já está configurado; faltam os recursos da Cloudflare, o OAuth App e as variáveis e segredos do ambiente `production`. O código não cria contas nem transfere automaticamente os dados da instalação anterior.
 
 ## Funcionalidades mantidas
 

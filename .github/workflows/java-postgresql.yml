@@ -1,0 +1,48 @@
+name: Validar Java e PostgreSQL
+on:
+  push:
+    paths: ["independent/**", ".github/workflows/java-postgresql.yml"]
+  pull_request:
+    paths: ["independent/**", ".github/workflows/java-postgresql.yml"]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_DB: jarvis_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: local_ci_only
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U postgres -d jarvis_test"
+          --health-interval 5s --health-timeout 5s --health-retries 20
+    env:
+      JARVIS_TEST_DB: "true"
+      JARVIS_DB_URL: jdbc:postgresql://localhost:5432/jarvis_test
+      JARVIS_DB_USER: postgres
+      JARVIS_DB_PASSWORD: local_ci_only
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: maven
+      - name: Compilar e testar migrations, API e isolamento
+        run: mvn -B -ntp -f independent/pom.xml verify
+      - name: Publicar relatórios dos testes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: java-test-results
+          path: independent/target/surefire-reports/
+      - name: Disponibilizar aplicação executável
+        uses: actions/upload-artifact@v4
+        with:
+          name: jarvis-java
+          path: independent/target/jarvis.jar

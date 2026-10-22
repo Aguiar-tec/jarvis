@@ -1,0 +1,33 @@
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: jarvis
+      POSTGRES_USER: jarvis_owner
+      POSTGRES_PASSWORD: ${JARVIS_DB_OWNER_PASSWORD:?Preencha JARVIS_DB_OWNER_PASSWORD no .env}
+      JARVIS_DB_PASSWORD: ${JARVIS_DB_PASSWORD:?Preencha JARVIS_DB_PASSWORD no .env}
+    volumes:
+      - jarvis_data:/var/lib/postgresql/data
+      - ./database/init-runtime-role.sh:/docker-entrypoint-initdb.d/10-runtime.sh:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U jarvis_owner -d jarvis"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+  app:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:${JARVIS_PORT:-8080}:8080"
+    environment:
+      JARVIS_BIND_ADDRESS: 0.0.0.0
+      JARVIS_DB_URL: jdbc:postgresql://db:5432/jarvis
+      JARVIS_DB_USER: jarvis_app
+      JARVIS_DB_PASSWORD: ${JARVIS_DB_PASSWORD}
+      JARVIS_MIGRATION_USER: jarvis_owner
+      JARVIS_MIGRATION_PASSWORD: ${JARVIS_DB_OWNER_PASSWORD}
+      JARVIS_COOKIE_SECURE: ${JARVIS_COOKIE_SECURE:-false}
+volumes:
+  jarvis_data:

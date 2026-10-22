@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark"><title>J.A.R.V.I.S. • Sua central de rotina</title>
+  <link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/styles.css"><script src="/app.js" defer></script>
+</head>
+<body>
+  <div id="boot" class="boot" role="status">Conectando à sua central…</div>
+  <section id="auth" class="auth-shell" hidden>
+    <div class="auth-story">
+      <a class="brand" href="/"><span class="brand-symbol">J</span><span>J.A.R.V.I.S.<small>ROTINA & DESENVOLVIMENTO</small></span></a>
+      <div class="auth-copy"><p class="eyebrow">UM DIA DE CADA VEZ</p><h1>Seu próximo passo<br>começa com<br><em>clareza.</em></h1><p>Organize tarefas, conecte competências e dê espaço ao que importa na sua rotina.</p><div class="orbit-art" aria-hidden="true"><span></span><i></i><b>J</b></div></div>
+      <p class="auth-footer">Sua rotina. Seu ritmo. Seu progresso.</p>
+    </div>
+    <div class="auth-main"><div class="auth-card">
+      <p class="eyebrow">BEM-VINDO À SUA CENTRAL</p><h2 id="auth-title">Vamos continuar?</h2><p id="auth-subtitle" class="muted">Entre para organizar o seu dia.</p>
+      <div class="auth-tabs" role="group" aria-label="Acesso à conta"><button id="login-tab" class="selected" type="button">Entrar</button><button id="register-tab" type="button">Criar conta</button></div>
+      <form id="auth-form">
+        <label id="name-field" hidden>Seu nome<input name="name" autocomplete="name" maxlength="150" placeholder="Como podemos chamar você?"></label>
+        <label>E-mail<input name="email" type="email" autocomplete="username" maxlength="254" required placeholder="voce@exemplo.com"></label>
+        <label>Senha<input name="password" type="password" autocomplete="current-password" required placeholder="Sua senha"></label>
+        <label id="confirmation-field" hidden>Confirmar senha<input name="confirmation" type="password" autocomplete="new-password" placeholder="Repita a senha"></label>
+        <p id="password-help" class="help" hidden>Use pelo menos 8 caracteres. Máximo de 72 bytes em UTF-8.</p>
+        <p id="auth-error" class="form-error" role="alert" hidden></p>
+        <button id="auth-submit" class="button primary full" type="submit">Entrar na minha central →</button>
+      </form><p class="auth-note">Seus registros ficam vinculados à sua conta.</p>
+    </div></div>
+  </section>
+  <div id="workspace" class="workspace" hidden>
+    <aside class="sidebar">
+      <a class="brand" href="/"><span class="brand-symbol">J</span><span>J.A.R.V.I.S.<small>SUA CENTRAL DE ROTINA</small></span></a>
+      <p class="nav-label">SEU ESPAÇO</p>
+      <nav id="navigation" aria-label="Navegação principal">
+        <button data-view="overview" class="nav-item active">◈ <span>Visão geral</span></button>
+        <button data-view="tasks" class="nav-item">☑ <span>Minhas tarefas</span><span id="task-nav-count" class="nav-count">0</span></button>
+        <button data-view="routines" class="nav-item">↻ <span>Rotinas</span></button>
+        <button data-view="goals" class="nav-item">◎ <span>Metas</span></button>
+        <button data-view="categories" class="nav-item">◇ <span>Áreas e competências</span></button>
+        <button data-view="evolution" class="nav-item">⌁ <span>Evolução</span></button>
+      </nav>
+      <div class="sidebar-note"><span class="status-dot"></span><div>Seu foco, em primeiro lugar.<small>Um passo possível hoje.</small></div></div>
+      <div class="account"><span id="avatar" class="avatar">J</span><div><strong id="account-name"></strong><small id="account-email"></small></div><button id="logout" class="icon-button" aria-label="Sair da conta" title="Sair">↪</button></div>
+    </aside>
+    <div class="main-shell">
+      <header class="topbar"><span class="topbar-caption">Organização que acompanha você</span><div><span class="status-dot"></span><span id="today-label"></span><button id="refresh" class="icon-button" aria-label="Atualizar registros" title="Atualizar">↻</button></div></header>
+      <main id="main" tabindex="-1">
+        <div class="page-heading"><div><p class="eyebrow">SUA CENTRAL, SEU RITMO</p><h1 id="page-title"></h1><p id="page-description" class="muted"></p></div><button id="primary-action" class="button primary">+ Nova tarefa</button></div>
+        <div id="page-error" class="notice error" role="alert" hidden></div><div id="loading" class="notice" role="status" hidden>Atualizando seus registros…</div><div id="content"></div>
+      </main><footer class="page-footer">J.A.R.V.I.S. <span>Organize o presente. Construa o próximo passo.</span></footer>
+    </div>
+  </div>
+  <dialog id="editor" aria-labelledby="editor-title">
+    <form id="editor-form"><div class="dialog-head"><div><p class="eyebrow">DO PLANO À AÇÃO</p><h2 id="editor-title"></h2></div><button id="close-editor" type="button" class="icon-button" aria-label="Fechar">×</button></div>
+      <div id="editor-fields"></div><p id="editor-error" class="form-error" role="alert" hidden></p>
+      <div class="dialog-actions"><button id="cancel-editor" type="button" class="button secondary">Cancelar</button><button id="save-editor" type="submit" class="button primary">Salvar</button></div>
+    </form>
+  </dialog><div id="toast" role="status" class="toast" hidden></div>
+</body>
+</html>
